@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>olivia</title>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+          integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+          crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Cookie|Permanent+Marker|Poiret+One|Rock+Salt|Yellowtail" rel="stylesheet">
+  <script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.4.4/randomColor.min.js"></script>
+  <style type="text/css">
+    body {
+      font-size: 500%;
+      padding: 20px;
+    }
+
+    main {
+      height: 500px;
+      width: 60%;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      resize: both;
+      overflow: auto;
+    }
+
+    main div {
+      width: 50%;
+      padding: 20px;
+      resize: both;
+      overflow: auto;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="daughter">
+      Olivia
+    </div>
+  </main>
+  <script>
+    const fontType = [
+      "Permanent Marker", "Yellowtail", "Poiret One", "Cookie",
+      "Rock Salt", "cursive"
+    ];
+
+    let num = Math.floor(Math.random()*5);
+    $('.daughter').css("font-family", fontType[num]);
+    $('.daughter').css("color", randomColor());
+
+    const pressedArray = [];
+    const secretCode = 'olivia';
+    window.addEventListener('keyup', (e) => {
+      pressedArray.push(e.key);
+      pressedArray.splice(-secretCode.length - 1, pressedArray.length - secretCode.length);
+      if(pressedArray.join('').toLowerCase().includes(secretCode)){
+        cornify_add();
+      }
+    });
+  </script>
+</body>
+</html>
