@@ -12,14 +12,14 @@
   <style type="text/css">
     body {
       font-size: 500%;
-      padding: 20px;
+      /*padding: 20px;*/
     }
 
     main {
       height: 500px;
       width: 60%;
       margin: 0 auto;
-      padding: 20px;
+      /*padding: 20px;*/
       display: flex;
       justify-content: center;
       align-items: center;
@@ -29,7 +29,7 @@
 
     main div {
       width: 50%;
-      padding: 20px;
+      /*padding: 20px;*/
       resize: both;
       overflow: auto;
       text-align: center;
@@ -43,23 +43,47 @@
     </div>
   </main>
   <script>
-    const fontType = [
-      "Permanent Marker", "Yellowtail", "Poiret One", "Cookie",
-      "Rock Salt", "cursive"
-    ];
-
-    let num = Math.floor(Math.random()*5);
-    $('.daughter').css("font-family", fontType[num]);
-    $('.daughter').css("color", randomColor());
-
     const pressedArray = [];
-    const secretCode = 'olivia';
+    const secretCode = 'unicorn';
     window.addEventListener('keyup', (e) => {
       pressedArray.push(e.key);
-      pressedArray.splice(-secretCode.length - 1, pressedArray.length - secretCode.length);
+      pressedArray.splice(-secretCode.length - 1,
+                          pressedArray.length - secretCode.length);
       if(pressedArray.join('').toLowerCase().includes(secretCode)){
         cornify_add();
       }
+    });
+
+    function randomizeNameFont() {
+      const fontType = [
+        "Permanent Marker", "Yellowtail", "Poiret One", "Cookie",
+        "Rock Salt", "cursive"
+      ];
+
+      let num = Math.floor(Math.random()*5);
+      $('.daughter').css("font-family", fontType[num]);
+    }
+
+    function randomizeNameColor() {
+      $('.daughter').css("color", randomColor());
+    }
+
+    $(() => {
+      randomizeNameFont();
+      randomizeNameColor();
+
+      let num = 0;
+      $('.daughter').on('click', () => {
+        randomizeNameColor();
+        num++;
+        if(num == 10){
+          Array.from(Array(100), () => cornify_add());
+        } else if (num > 11) {
+          cornify_add();
+        } else {
+          return;
+        }
+      });
     });
   </script>
 </body>
